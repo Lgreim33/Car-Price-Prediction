@@ -20,10 +20,11 @@ from tensorflow.keras.optimizers import Adam
 """**Data Preperation**
 
 """
-
+#import dataset
 data = pd.read_csv("train.csv", ",")
 data.head()
 
+#create pairplot to visualize the relationship between inputs and cost 
 sns.pairplot(data[["years",	"km",	"rating",	"condition",	"economy",	"top speed",	"hp",	"torque",	"current price"]], diag_kind = "kde")
 
 tensor_data = tf.random.shuffle(tf.constant(data))
@@ -32,6 +33,7 @@ input = tensor_data[:,3:-1]
 
 output = tensor_data[:,-1]
 output = tf.expand_dims(output,axis = -1)
+
 
 TRAIN_RATIO = .8
 VAL_RATIO = .1
